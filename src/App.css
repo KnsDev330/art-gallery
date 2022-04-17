@@ -1,6 +1,6 @@
 :root {
     --site-background-color: rgba(246, 247, 249, 1);
-    --site-max-width: 1300px;
+    --site-max-width: 1600px;
     --btn-border-gray: rgba(0, 0, 0, 0.14);
     --btn-hover-background: rgba(0, 0, 0, .02);
 }

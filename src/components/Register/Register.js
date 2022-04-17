@@ -3,25 +3,17 @@ import React, { useEffect } from 'react';
 import './Register.css';
 import googleSvg from '../../images/google.svg';
 import { toast } from 'react-toastify';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase.init';
 import { useNavigate } from 'react-router-dom';
 const toastConfig = { position: "top-right", autoClose: 2000 };
 
 const Register = () => {
 
-    const [createUser, user, loading, error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const navigate = useNavigate();
 
-    // navigate user on successfull registration
-    useEffect(() => {
-        if (user) {
-            localStorage.removeItem("toLocation");
-            navigate(JSON.parse(localStorage.getItem("toLocation"))?.pathname || '/');
-        }
-    }, [navigate, user]);
-
     // handle email registration
+    const [createUser, user, loading, error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const HandleRegister = e => {
         e.preventDefault();
         const [nameBox, emailBox, passwordBox] = [e.target.name, e.target.email, e.target.password];
@@ -39,8 +31,24 @@ const Register = () => {
         if (error) return toast.error(`${error.code.slice(5).replace(/-/g, ' ')}`, toastConfig);
     }
 
+    // handle google registration
+    const [signInWithGoogle, user2, loading2, error2] = useSignInWithGoogle(auth);
+    const HandleGoogleSignIn = e => {
+        signInWithGoogle();
+        if (loading2) return;
+        if (error2) return toast.error(`${error.code.slice(5).replace(/-/g, ' ')}`, toastConfig);
+    }
+
+    // navigate user on successfull registration
+    useEffect(() => {
+        if (user || user2) {
+            localStorage.removeItem("toLocation");
+            navigate(JSON.parse(localStorage.getItem("toLocation"))?.pathname || '/');
+        }
+    }, [navigate, user, user2]);
+
     return (
-        <div className='site-mw mx-auto'>
+        <div className='site-mw mx-auto my-5'>
             <div className='register d-flex flex-column align-items-center pt-4 pb-5 mb-5'>
 
                 <h2>Register</h2>
@@ -60,7 +68,7 @@ const Register = () => {
                     <hr className='login-hr' /> OR <hr className='login-hr' />
                 </div>
 
-                <button className='continue-with-button d-flex align-items-center'>
+                <button className='continue-with-button d-flex align-items-center' onClick={HandleGoogleSignIn}>
                     <img src={googleSvg} alt="Google" />
                     <p>Continue with Google</p>
                 </button>

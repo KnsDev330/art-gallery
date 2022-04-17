@@ -3,24 +3,16 @@ import React, { useEffect } from 'react';
 import './Login.css';
 import googleSvg from '../../images/google.svg';
 import { toast } from 'react-toastify';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase.init';
 const toastConfig = { position: "top-right", autoClose: 2000 };
 
 const Login = () => {
-    const [SignIn, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const navigate = useNavigate();
 
-    // navigate user on successfull login
-    useEffect(() => {
-        if (user) {
-            localStorage.removeItem("toLocation");
-            navigate(JSON.parse(localStorage.getItem("toLocation"))?.pathname || '/');
-        }
-    }, [navigate, user]);
-
     // handle email login
+    const [SignIn, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const HandleLogin = e => {
         e.preventDefault();
         const [emailBox, passwordBox] = [e.target.email, e.target.password];
@@ -34,8 +26,24 @@ const Login = () => {
         if (error) return toast.error(`${error.code.slice(5).replace(/-/g, ' ')}`, toastConfig);
     }
 
+    // handle google registration
+    const [signInWithGoogle, user2, loading2, error2] = useSignInWithGoogle(auth);
+    const HandleGoogleSignIn = e => {
+        signInWithGoogle();
+        if (loading2) return;
+        if (error2) return toast.error(`${error.code.slice(5).replace(/-/g, ' ')}`, toastConfig);
+    }
+
+    // navigate user on successfull registration
+    useEffect(() => {
+        if (user || user2) {
+            localStorage.removeItem("toLocation");
+            navigate(JSON.parse(localStorage.getItem("toLocation"))?.pathname || '/');
+        }
+    }, [navigate, user, user2]);
+
     return (
-        <div className='site-mw mx-auto'>
+        <div className='site-mw mx-auto my-5'>
             <div className='register d-flex flex-column align-items-center pt-4 pb-5 mb-5'>
 
                 <h2>Login</h2>
@@ -53,7 +61,7 @@ const Login = () => {
                     <hr className='login-hr' /> OR <hr className='login-hr' />
                 </div>
 
-                <button className='continue-with-button d-flex align-items-center'>
+                <button className='continue-with-button d-flex align-items-center' onClick={HandleGoogleSignIn}>
                     <img src={googleSvg} alt="Google" />
                     <p>Continue with Google</p>
                 </button>

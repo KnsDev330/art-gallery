@@ -11,6 +11,7 @@ import Blogs from './components/Blogs/Blogs';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
 import Package from './components/Package/Package';
+import Packages from './components/Packages/Packages';
 import { ToastContainer } from 'react-toastify';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 
@@ -19,10 +20,11 @@ function App() {
         <div className="App">
             <ToastContainer></ToastContainer>
             <Header></Header>
-            <main className='main my-5'>
+            <main className='main'>
                 <Routes>
                     <Route path='/' element={<Home></Home>}></Route>
-                    <Route path='/order' element={<RequireAuth><Package></Package></RequireAuth>}></Route>
+                    <Route path='/packages' element={<Packages></Packages>}></Route>
+                    <Route path='/package/:id' element={<RequireAuth><Package></Package></RequireAuth>}></Route>
                     <Route path='/about-me' element={<AboutMe></AboutMe>}></Route>
                     <Route path='/blogs' element={<Blogs></Blogs>}></Route>
                     <Route path='/login' element={<Login></Login>}></Route>

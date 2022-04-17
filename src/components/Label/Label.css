@@ -1,0 +1,12 @@
+.label {
+    position: absolute;
+    z-index: 99;
+    color: white;
+    background: red;
+    width: 150px;
+    transform: rotateZ(45deg);
+    top: 30px;
+    right: -32px;
+    text-align: center;
+    border: 2px dashed white;
+}
