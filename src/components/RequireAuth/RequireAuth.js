@@ -5,16 +5,21 @@ import { toast } from 'react-toastify';
 import { auth } from '../../firebase.init';
 
 const RequireAuth = ({ children }) => {
-    const [user] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const location = useLocation();
-    if (user !== 'undefined') {
+
+    if (loading) return;
+
+    if (!user) {
         toast.error(`Please Login First`, {
             position: "top-right",
             autoClose: 2000
         });
-        return <Navigate to="/login" state={{ from: location }} replace />;
+        localStorage.setItem("toLocation", JSON.stringify(location));
+        return <Navigate to="/login" replace />;
     }
     return children;
+
 };
 
 export default RequireAuth;

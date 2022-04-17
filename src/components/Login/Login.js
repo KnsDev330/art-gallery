@@ -1,28 +1,39 @@
 import { Button } from 'react-bootstrap';
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Login.css';
 import googleSvg from '../../images/google.svg';
 import { toast } from 'react-toastify';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../../firebase.init';
 const toastConfig = { position: "top-right", autoClose: 2000 };
 
 const Login = () => {
-    // const [] = useCreateUserWi
+    const [SignIn, user, loading, error] = useSignInWithEmailAndPassword(auth);
+    const navigate = useNavigate();
+
+    // navigate user on successfull login
+    useEffect(() => {
+        if (user) {
+            localStorage.removeItem("toLocation");
+            navigate(JSON.parse(localStorage.getItem("toLocation"))?.pathname || '/');
+        }
+    }, [navigate, user]);
+
+    // handle email login
     const HandleLogin = e => {
         e.preventDefault();
         const [emailBox, passwordBox] = [e.target.email, e.target.password];
         const [email, password] = [emailBox.value, passwordBox.value];
-
-        if (email.length < 4) {
-            toast.error(`Email is not valid`, toastConfig);
-            emailBox.focus();
-            return;
-        }
         if (password.length < 6) {
             toast.error(`Password must be at least 6 characters long`, toastConfig);
-            passwordBox.focus();
-            return;
+            passwordBox.focus(); return;
         }
+        SignIn(email, password);
+        if (loading) return;
+        if (error) return toast.error(`${error.code.slice(5).replace(/-/g, ' ')}`, toastConfig);
     }
+
     return (
         <div className='site-mw mx-auto'>
             <div className='register d-flex flex-column align-items-center pt-4 pb-5 mb-5'>

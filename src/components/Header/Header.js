@@ -1,14 +1,15 @@
 import logo from '../../images/logo.png';
 import React from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
-// import { useAuthState } from 'react-firebase-hooks';
 
 import './Header.css';
 import { Link } from 'react-router-dom';
-// import { auth } from '../../firebase.init';
+import { auth } from '../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
-    // const [user] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     return (
         <Navbar bg="dark" variant="dark" expand="lg" className='navbar'>
             <Container className='site-mw'>
@@ -20,8 +21,14 @@ const Header = () => {
                         <Nav.Link as={Link} to='/order' >Order</Nav.Link>
                         <Nav.Link as={Link} to='/about-me' >About Me</Nav.Link>
                         <Nav.Link as={Link} to='/blogs' >Blogs</Nav.Link>
-                        <Button variant='outline-primary' as={Link} to='/login' className='me-2'>Login</Button>
-                        <Button variant='primary' as={Link} to='/register'>Register</Button>
+                        {
+                            user ? <>
+                                <Button variant='outline-danger' onClick={() => signOut(auth)}>Logout</Button>
+                            </> : <>
+                                <Button variant='outline-primary' as={Link} to='/login' className='me-2'>Login</Button>
+                                <Button variant='primary' as={Link} to='/register'>Register</Button>
+                            </>
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </Container>
