@@ -46,8 +46,8 @@ const Register = () => {
             toast.error(`${err.code.slice(5).replace(/-/g, ' ')}`, toastConfig);
         }
         if (user || user2) {
-            localStorage.removeItem("toLocation");
             navigate(JSON.parse(localStorage.getItem("toLocation"))?.pathname || '/');
+            localStorage.removeItem("toLocation");
         }
     }, [navigate, user, user2, error, error2]);
 
