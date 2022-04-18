@@ -11,6 +11,11 @@
 
 .App {
     background-color: var(--site-background-color);
+
+    /* for making footer go bottom */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .App-logo {

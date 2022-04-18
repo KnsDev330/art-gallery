@@ -1,9 +1,11 @@
 import React from 'react';
+import './MyWork.css';
 
-const MyWork = () => {
+const MyWork = ({ work }) => {
     return (
-        <div>
-            MyWork
+        <div className='mywork'>
+            <img src={work.image} alt="" />
+            <h2>{work.title}</h2>
         </div>
     );
 };

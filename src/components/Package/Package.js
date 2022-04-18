@@ -9,7 +9,7 @@ const Package = ({ pack }) => {
         <Card style={{ width: '18rem' }} className='package'>
             <div className="package-image">
                 {pack.id === 2 && <Label></Label>}
-                <Card.Img variant="top" src={pack.image} className={pack.id === 2 && 'img-120'} />
+                <Card.Img variant="top" src={pack.image} />
             </div>
             <div className='mt-auto'>
                 <Card.Body className=''>

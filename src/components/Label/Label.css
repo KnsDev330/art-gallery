@@ -8,5 +8,6 @@
     top: 30px;
     right: -32px;
     text-align: center;
-    border: 2px dashed white;
+    border: 2px dotted white;
+    outline: 5px solid red;
 }

@@ -11,12 +11,12 @@ import { signOut } from 'firebase/auth';
 const Header = () => {
     const [user] = useAuthState(auth);
     return (
-        <Navbar bg="dark" variant="dark" expand="lg" className='navbar'>
-            <Container className='site-mw'>
+        <Navbar bg="dark" variant="dark" expand="lg" className='navbar' sticky='top'>
+            <Container className='site-mw nav-container'>
                 <Navbar.Brand as={Link} to='/' ><img src={logo} alt="Art Gallery" className='logo' /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto">
+                    <Nav className="ms-auto nav-items">
                         <Nav.Link as={Link} to='/' >Home</Nav.Link>
                         <Nav.Link as={Link} to='/packages' >Packages</Nav.Link>
                         <Nav.Link as={Link} to='/about-me' >About</Nav.Link>

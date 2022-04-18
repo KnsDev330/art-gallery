@@ -3,21 +3,21 @@
         "id": 1,
         "name": "Wedding",
         "price": 9990,
-        "image": "https://i.ibb.co/PWzc3tY/package-2.jpg",
-        "desc": "Capture your Good Memeries. Let'em stay with you forever! 200+ refined photos"
+        "image": "https://knsdev330-a3.netlify.app/src/images/package-2.jpg",
+        "desc": "Capture your Good Memeries. Let'em stay with you forever!"
     },
     {
         "id": 2,
         "name": "OutDoor",
         "price": 19990,
-        "image": "https://i.ibb.co/VMHkr16/package-3.jpg",
-        "desc": "Wanna shoot outdoor? Got you covered. Even in Night time :) 200+ refined photos"
+        "image": "https://knsdev330-a3.netlify.app/src/images/package-3.jpg",
+        "desc": "Wanna shoot outdoor? Got you covered. Even in Night time :)"
     },
     {
         "id": 3,
         "name": "InDoor",
         "price": 29990,
-        "image": "https://i.ibb.co/HK4RHDv/package-1.jpg",
+        "image": "https://knsdev330-a3.netlify.app/src/images/package-1.jpg",
         "desc": "Like indoor photo shoot? Get in touch now. 200+ refined photos"
     }
 ]

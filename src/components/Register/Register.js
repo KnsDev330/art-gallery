@@ -41,11 +41,15 @@ const Register = () => {
 
     // navigate user on successfull registration
     useEffect(() => {
+        const err = error || error2;
+        if (err) {
+            toast.error(`${err.code.slice(5).replace(/-/g, ' ')}`, toastConfig);
+        }
         if (user || user2) {
             localStorage.removeItem("toLocation");
             navigate(JSON.parse(localStorage.getItem("toLocation"))?.pathname || '/');
         }
-    }, [navigate, user, user2]);
+    }, [navigate, user, user2, error, error2]);
 
     return (
         <div className='site-mw mx-auto my-5'>

@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "question": "Authentication vs. Authorization",
+        "ans": [
+            "Authentication is for verifying who the user is<br/>- Authorization determines what resources a user can access.",
+            "Authentication works by verifying password / one time pin / biometric information /or other information which is provided by the user<br/>- Authorization works by the rules that are ruled by the organization /or admins.",
+            "Authentication is the first step of a good identity and access management process.<br/>- Authorization comes after authentication.",
+            "Authentication is visible to and can be changed by the user.<br/>- Authorization isn't visible and can't be changed by the user."
+        ]
+    },
+    {
+        "id": 2,
+        "question": "Why should we use firebase and alternatives to implement authentication",
+        "ans": [
+            "Google Firebase offers us many features that makes it easy to use.",
+            "We don't have to worry much about our applications backend",
+            "It reduces our Workload and Time waste",
+            "Firebase is simple, lightweight, friendly and industrially recognised",
+            "With Firebase we get built-in third-party authntication providers including Google, Facebook, Twitter, GitHub etc.",
+            "- We can use Password based authentication or JWT (JSON Web Token)"
+        ]
+    },
+    {
+        "id": 3,
+        "question": "What other services does firebase provide other than authentication ?",
+        "ans": [
+            "Firestore Database",
+            "Realtime Database",
+            "Storage",
+            "Hosting",
+            "Functions",
+            "Analytics",
+            "Machine Learning etc."
+        ]
+    }
+]

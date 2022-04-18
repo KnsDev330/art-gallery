@@ -10,10 +10,10 @@ import AboutMe from './components/AboutMe/AboutMe';
 import Blogs from './components/Blogs/Blogs';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
-import Package from './components/Package/Package';
 import Packages from './components/Packages/Packages';
 import { ToastContainer } from 'react-toastify';
-import RequireAuth from './components/RequireAuth/RequireAuth';
+import CheckOut from './components/CheckOut/CheckOut';
+// import RequireAuth from './components/RequireAuth/RequireAuth';
 
 function App() {
     return (
@@ -24,7 +24,7 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Home></Home>}></Route>
                     <Route path='/packages' element={<Packages></Packages>}></Route>
-                    <Route path='/package/:id' element={<RequireAuth><Package></Package></RequireAuth>}></Route>
+                    <Route path='/package/:id' element={<CheckOut></CheckOut>}></Route>
                     <Route path='/about-me' element={<AboutMe></AboutMe>}></Route>
                     <Route path='/blogs' element={<Blogs></Blogs>}></Route>
                     <Route path='/login' element={<Login></Login>}></Route>

@@ -23,24 +23,26 @@ const Login = () => {
         }
         SignIn(email, password);
         if (loading) return;
-        if (error) return toast.error(`${error.code.slice(5).replace(/-/g, ' ')}`, toastConfig);
     }
 
     // handle google registration
     const [signInWithGoogle, user2, loading2, error2] = useSignInWithGoogle(auth);
-    const HandleGoogleSignIn = e => {
+    const HandleGoogleSignIn = () => {
         signInWithGoogle();
         if (loading2) return;
-        if (error2) return toast.error(`${error.code.slice(5).replace(/-/g, ' ')}`, toastConfig);
     }
 
     // navigate user on successfull registration
     useEffect(() => {
+        const err = error || error2;
+        if (err) {
+            toast.error(`${err.code.slice(5).replace(/-/g, ' ')}`, toastConfig);
+        }
         if (user || user2) {
             localStorage.removeItem("toLocation");
             navigate(JSON.parse(localStorage.getItem("toLocation"))?.pathname || '/');
         }
-    }, [navigate, user, user2]);
+    }, [navigate, user, user2, error, error2]);
 
     return (
         <div className='site-mw mx-auto my-5'>

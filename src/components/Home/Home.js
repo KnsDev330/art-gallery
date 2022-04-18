@@ -6,10 +6,11 @@ import img3 from '../../images/slider-3.jpg';
 
 import './Home.css';
 import Packages from '../Packages/Packages';
+import MyWorks from '../MyWorks/MyWorks';
 
 const Home = () => {
     return (
-        <div className='site-mw mx-auto'>
+        <div className='site-mw mx-auto p-0' id='lolch'>
             <Carousel fade className='carousel' interval={1500} indicators={false} >
                 <Carousel.Item>
                     <img
@@ -47,6 +48,7 @@ const Home = () => {
 
 
             <Packages></Packages>
+            <MyWorks></MyWorks>
         </div>
     );
 };

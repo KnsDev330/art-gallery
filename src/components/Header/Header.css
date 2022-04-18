@@ -5,3 +5,17 @@
 .navbar {
     height: 65px;
 }
+
+.navbar .container {
+    background-color: #212529;
+}
+
+@media only screen and (max-width: 992px) {
+    .site-mw.nav-container.container {
+        max-width: 100%;
+    }
+
+    .nav-items {
+        padding: 20px 0;
+    }
+}

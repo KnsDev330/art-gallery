@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "title": "Portraits",
+        "image": "https://knsdev330-a3.netlify.app/src/images/1.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Weddings",
+        "image": "https://knsdev330-a3.netlify.app/src/images/2.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Balck & White",
+        "image": "https://knsdev330-a3.netlify.app/src/images/3.jpg"
+    },
+    {
+        "id": 4,
+        "title": "Spring",
+        "image": "https://knsdev330-a3.netlify.app/src/images/4.jpg"
+    },
+    {
+        "id": 5,
+        "title": "Architechture",
+        "image": "https://knsdev330-a3.netlify.app/src/images/5.jpg"
+    },
+    {
+        "id": 6,
+        "title": "Night Sky",
+        "image": "https://knsdev330-a3.netlify.app/src/images/6.jpg"
+    },
+    {
+        "id": 7,
+        "title": "Landscapes",
+        "image": "https://knsdev330-a3.netlify.app/src/images/7.jpg"
+    },
+    {
+        "id": 8,
+        "title": "Street Life",
+        "image": "https://knsdev330-a3.netlify.app/src/images/8.jpg"
+    },
+    {
+        "id": 9,
+        "title": "Aerial",
+        "image": "https://knsdev330-a3.netlify.app/src/images/9.jpg"
+    }
+]
