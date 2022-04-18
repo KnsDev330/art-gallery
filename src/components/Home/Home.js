@@ -10,8 +10,8 @@ import MyWorks from '../MyWorks/MyWorks';
 
 const Home = () => {
     return (
-        <div className='site-mw mx-auto p-0' id='lolch'>
-            <Carousel fade className='carousel' interval={1500} indicators={false} >
+        <div className='mx-auto p-0' id='lolch'>
+            <Carousel fade className='carousel' interval={1000} indicators={false} >
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
@@ -22,7 +22,7 @@ const Home = () => {
                         <h3>Wedding</h3>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item interval={1500}>
+                <Carousel.Item interval={1000}>
                     <img
                         className="d-block w-100"
                         src={img2}
@@ -33,7 +33,7 @@ const Home = () => {
                         <h3>OutDoor</h3>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item interval={1500}>
+                <Carousel.Item interval={1000}>
                     <img
                         className="d-block w-100"
                         src={img3}
@@ -47,8 +47,10 @@ const Home = () => {
             </Carousel>
 
 
-            <Packages></Packages>
-            <MyWorks></MyWorks>
+            <div className="site-mw mx-auto">
+                <Packages></Packages>
+                <MyWorks></MyWorks>
+            </div>
         </div>
     );
 };

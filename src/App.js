@@ -16,7 +16,7 @@ import CheckOut from './components/CheckOut/CheckOut';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 import NotFound from './components/NotFound/NotFound';
 import Booked from './components/Booked/Booked';
-// import RequireAuth from './components/RequireAuth/RequireAuth';
+import ResetPassword from './components/ResetPassword/ResetPassword';
 
 function App() {
     return (
@@ -32,6 +32,7 @@ function App() {
                     <Route path='/blogs' element={<Blogs></Blogs>}></Route>
                     <Route path='/login' element={<Login></Login>}></Route>
                     <Route path='/register' element={<Register></Register>}></Route>
+                    <Route path='/reset-password' element={<ResetPassword></ResetPassword>}></Route>
                     <Route path='/booked' element={<RequireAuth><Booked></Booked></RequireAuth>}></Route>
                     <Route path='*' element={<NotFound></NotFound>}></Route>
                 </Routes>

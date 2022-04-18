@@ -5,7 +5,7 @@ import googleSvg from '../../images/google.svg';
 import { toast } from 'react-toastify';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase.init';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const toastConfig = { position: "top-right", autoClose: 2000 };
 
 const Register = () => {
@@ -13,7 +13,7 @@ const Register = () => {
     const navigate = useNavigate();
 
     // handle email registration
-    const [createUser, user, loading, error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [createUser, user, , error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const HandleRegister = e => {
         e.preventDefault();
         const [nameBox, emailBox, passwordBox] = [e.target.name, e.target.email, e.target.password];
@@ -27,29 +27,21 @@ const Register = () => {
             passwordBox.focus(); return;
         }
         createUser(email, password);
-        if (loading) return;
-        if (error) return toast.error(`${error.code.slice(5).replace(/-/g, ' ')}`, toastConfig);
     }
 
     // handle google registration
-    const [signInWithGoogle, user2, loading2, error2] = useSignInWithGoogle(auth);
-    const HandleGoogleSignIn = e => {
-        signInWithGoogle();
-        if (loading2) return;
-        if (error2) return toast.error(`${error.code.slice(5).replace(/-/g, ' ')}`, toastConfig);
-    }
+    const [signInWithGoogle, user2, , error2] = useSignInWithGoogle(auth);
 
     // navigate user on successfull registration
     useEffect(() => {
-        const err = error || error2;
-        if (err) {
-            toast.error(`${err.code.slice(5).replace(/-/g, ' ')}`, toastConfig);
-        }
         if (user || user2) {
             navigate(JSON.parse(localStorage.getItem("toLocation"))?.pathname || '/');
             localStorage.removeItem("toLocation");
         }
-    }, [navigate, user, user2, error, error2]);
+    }, [user, user2, navigate]);
+
+    useEffect(() => { error && toast.error(`${error.code.slice(5).replace(/-/g, ' ')}`, toastConfig) }, [error]);
+    useEffect(() => { error2 && toast.error(`${error2.code.slice(5).replace(/-/g, ' ')}`, toastConfig) }, [error2]);
 
     return (
         <div className='site-mw mx-auto my-5'>
@@ -62,17 +54,18 @@ const Register = () => {
                     <label htmlFor="name" className='text-label'>Name:</label>
                     <input type="text" autoComplete='on' className='form-control mx-auto mb-2' name="name" id="name" placeholder='Your Name' />
                     <label htmlFor="email" className='text-label'>Email:</label>
-                    <input type="email" autoComplete='on' className='form-control mx-auto mb-2' name="email" id="email" placeholder='Enter Email' />
+                    <input type="email" autoComplete='on' className='form-control mx-auto mb-2' name="email" id="email" placeholder='Enter Email' required />
                     <label htmlFor="name" className='text-label'>Password:</label>
-                    <input type="password" autoComplete='on' className='form-control mx-auto' name="password" id="password" placeholder='Enter Password' />
-                    <Button variant='success' type='submit' className='my-3 px-5'>Register</Button>
+                    <input type="password" autoComplete='on' className='form-control mx-auto' name="password" id="password" placeholder='Enter Password' required />
+                    <Button variant='success' type='submit' className='my-3 px-5'>Register</Button><br />
+                    <small>Already have account? <Link to='/login'>Login</Link></small>
                 </form>
 
                 <div className='my-3'>
                     <hr className='login-hr' /> OR <hr className='login-hr' />
                 </div>
 
-                <button className='continue-with-button d-flex align-items-center' onClick={HandleGoogleSignIn}>
+                <button className='continue-with-button d-flex align-items-center' onClick={() => signInWithGoogle()}>
                     <img src={googleSvg} alt="Google" />
                     <p>Continue with Google</p>
                 </button>

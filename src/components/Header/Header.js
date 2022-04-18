@@ -21,14 +21,16 @@ const Header = () => {
                         <Nav.Link as={Link} to='/packages' >Packages</Nav.Link>
                         <Nav.Link as={Link} to='/about-me' >About</Nav.Link>
                         <Nav.Link as={Link} to='/blogs' >Blogs</Nav.Link>
-                        {
-                            user ? <>
-                                <Button variant='outline-danger' onClick={() => signOut(auth)}>Logout</Button>
-                            </> : <>
-                                <Button variant='outline-primary' as={Link} to='/login' className='me-2'>Login</Button>
-                                <Button variant='primary' as={Link} to='/register'>Register</Button>
-                            </>
-                        }
+                        <div className='buttons'>
+                            {
+                                user ? <>
+                                    <Button variant='outline-danger' className='mx-1' onClick={() => signOut(auth)}>Logout</Button>
+                                </> : <>
+                                    <Button variant='outline-primary' className='mx-1' as={Link} to='/login'>Login</Button>
+                                    <Button variant='primary' className='mx-1' as={Link} to='/register'>Register</Button>
+                                </>
+                            }
+                        </div>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

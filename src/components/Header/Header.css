@@ -18,4 +18,16 @@
     .nav-items {
         padding: 20px 0;
     }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .buttons a {
+        width: 60%;
+    }
 }
